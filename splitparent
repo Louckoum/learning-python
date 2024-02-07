@@ -1,0 +1,40 @@
+
+child = []
+family = {}
+
+def childnb(z):
+    for x in range(z):
+        child.append("enfant"+str(x+1))
+
+
+childnb(int(input("nombre d'enfants: ")))
+print(child)
+
+for x in range(len(child)):
+    nom = input("nom de " +child[x]+ ": ") 
+    age = input("age de " +child[x]+ ": ")
+    pourc = input("pourcentage du parent1 " +child[0]+ ": ") 
+
+    family [child[x]] = {"nom" : nom, "age" : age,"pourcentage parent1" : pourc, "pourcentage parent2" : 100-int(pourc)  }
+    print(family[child[x]])
+    correct = input("les informations sont elles corrects Y/N: ")
+    while correct == "N" or "Y":
+        if correct == "Y":
+            break
+
+        print("veuillez rerentrer les infromations")
+        nom = input("nom de " +child[x]+ ": ") 
+        age = input("age de " +child[x]+ ": ")
+        pourc = input("pourcentage du parent1 " +child[0]+ ": ") 
+        family [child[x]] = {"nom" : nom, "age" : age,"pourcentage parent1" : pourc, "pourcentage parent2" : 100-int(pourc)  }
+        correct = input("les informations sont elles corrects Y/N: ") 
+    else:
+        print("mauvais input veuilliez répondre par Y/N uniquement")    
+
+
+
+
+
+
+p1 = float(input("salaire parent1: "))
+p2 = float(input("salaire parent2: "))
