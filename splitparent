@@ -2,39 +2,113 @@
 child = []
 family = {}
 
+
 def childnb(z):
     for x in range(z):
         child.append("enfant"+str(x+1))
 
+def infochild():
+    family = {}
+    for x in range(len(child)):
+    nom = input("nom de " +child[x]+ ": ") 
+    age = input("age de " +child[x]+ ": ")
+    pourc = input("pourcentage du parent1 " +child[x]+ ": ") 
+    
+    family [child[x]] = {"nom" : nom, "age" : age,"pourcentage parent1" : pourc, "pourcentage parent2" : 100-int(pourc)  }
+    print(family[child[x]])
+    correct = input("les informations sont elles corrects y/n: ")
+    while True:
+        if correct == "n":
+        
+            print("veuillez rerentrer les infromations")
+            nom = input("nom de " +child[x]+ ": ") 
+            age = input("age de " +child[x]+ ": ")
+            pourc = input("pourcentage du parent1 " +child[x]+ ": ") 
+            family [child[x]] = {"nom" : nom, "age" : age,"pourcentage parent1" : pourc, "pourcentage parent2" : 100-int(pourc)  }
+            print(family[child[x]])
+            correct = input("les informations sont elles corrects y/n: ")
+            if correct == "y":
+                print("enfant suivant")  
+                break 
+        elif correct == "y":
+            print("enfant suivant")  
+            break  
+        else: 
+            print("mauvais input veuilliez répondre par y/n uniquement")    
+            correct = input("les informations sont elles corrects y/n: ")
+
+
+def parent(x):
+    p1 = "salaire"
+    p2 = float(input("salaire de " +x+ " mensuel (yc 13iem): "))
+    salaire = {}
+    salaire[p1]= {p2}
+    charge1 = {}
+    print("passont au charges 1 de "+x)
+    while True:
+        nc = str(input("veuillez rentrer le nom de la charge 1 pour le "+str(x)+": "))
+        vc = str(input("veuillez rentrer le montant de la charge 1 pour le "+str(x)+": "))
+        charge1[nc]={vc}
+        t = input("avez vous fini avec les charges 1 du "+str(x)+" y/n: ")
+        if t == "y":
+            break
+        else:
+            print("prochaine charge")
+    print("passont au charge 2 de "+str(x))
+    charge2 = {}
+    while True:
+        nc = str(input("veuillez rentrer le nom de la charge 2 pour le "+str(x)+": "))
+        vc = str(input("veuillez rentrer le montant de la charge 2 pour le "+str(x)+": "))
+        charge2[nc]={vc}
+        f = input("avez vous fini avec les charges 2 du "+str(x)+" y/n: ")
+        if f == "y":
+            break
+        else:
+            print("control des charges")
+    
+    print(charge1)
+    chargec = input("les charges 1 sont elle correct y/n: ")
+    if chargec == "y":
+        print("control de charges 2")
+    elif chargec == "n":
+        while True:
+            nc = str(input("veuillez rentrer le nom de la charge 1 a modifier: "))
+            vc = str(input("veuillez rentrer le nouveaux montant de" +str(nc)+ ": "))
+            charge1[nc]={vc}
+            t = input("avez vous fini de modifier les charges 1 y/n: ")
+            if t == "y":
+                break
+   
+    print(charge2)
+    chargecc = input("les charges 2 sont elle correct y/n: ")
+    if chargecc == "y":
+        print("contrôlont les information de "+x)
+    elif chargecc == "n":
+        while True:
+            nc = str(input("veuillez rentrer le nom de la charge 2 a modifier: "))
+            vc = str(input("veuillez rentrer le nouveaux montant de" +str(nc)+ ": "))
+            charge2[nc]={vc}
+            t = input("avez vous fini de modifier les charges 2 y/n: ")
+            if t == "y":
+                break
+    p = {
+        "salaire":salaire,
+        "charge1":charge1,
+        "charge2":charge2}
+    globals()[str(x)]=p
+    print(p)
+
+
+
+
 
 childnb(int(input("nombre d'enfants: ")))
 print(child)
+infochild()
 
-for x in range(len(child)):
-    nom = input("nom de " +child[x]+ ": ") 
-    age = input("age de " +child[x]+ ": ")
-    pourc = input("pourcentage du parent1 " +child[0]+ ": ") 
+print("enfants fini")
 
-    family [child[x]] = {"nom" : nom, "age" : age,"pourcentage parent1" : pourc, "pourcentage parent2" : 100-int(pourc)  }
-    print(family[child[x]])
-    correct = input("les informations sont elles corrects Y/N: ")
-    while correct == "N" or "Y":
-        if correct == "Y":
-            break
-
-        print("veuillez rerentrer les infromations")
-        nom = input("nom de " +child[x]+ ": ") 
-        age = input("age de " +child[x]+ ": ")
-        pourc = input("pourcentage du parent1 " +child[0]+ ": ") 
-        family [child[x]] = {"nom" : nom, "age" : age,"pourcentage parent1" : pourc, "pourcentage parent2" : 100-int(pourc)  }
-        correct = input("les informations sont elles corrects Y/N: ") 
-    else:
-        print("mauvais input veuilliez répondre par Y/N uniquement")    
+for i in range(2):
+    parent(input("nom du parent: "))
 
 
-
-
-
-
-p1 = float(input("salaire parent1: "))
-p2 = float(input("salaire parent2: "))
